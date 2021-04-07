@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="icon" href="./images/favicon.ico" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script
+      src="https://kit.fontawesome.com/6e811d66d4.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body class="chat">
+    <div class="chat__sidebar">
+      <div id="room-id"></div>
+      <div id="users"></div>
+      <div class="form-field" id="logout-btn">
+        <button onClick='window.location.href = "./";'>
+          <i class="fa fas fa-sign-out-alt fa-lg"></i>
+          LEAVE ROOM</button
+        >
+      </div>
+    </div>
+
+    <div class="chat__main">
+      <ol id="messages" class="chat__messages"> </ol>
+
+      <div class="chat__footer">
+        <form action="" id="message-form">
+          <input type="text" name="message" autocomplete="off" autofocus="true" />
+          <button type="button" id="message-location">
+            <i class="fas fa-map-marked-alt"></i> 
+            Send location 
+          </button>
+          <button type="submit">
+            <i class="far fa-paper-plane"></i>
+            Send
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/lib/deparam.js"></script>
+    <script src="./js/lib/mustache.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/index.js"></script>
+
+    <script id="message-template" type="text/template">
+      <li class='message'>
+        <div class="message__title">
+          <h4>{{from}}</h4>
+          <span>{{createdAt}}</span>
+        </div>
+
+        <div class="message__body">
+          <p>{{content}}</p>
+        </div>
+      </li>
+    </script>
+
+    <script id="location-template" type="text/template">
+      <li class='message'>
+        <div class="message__title">
+          <h4>{{from}}</h4>
+          <span>{{createdAt}}</span>
+        </div>
+
+        <div class="message__body">
+          <div class="map"></div>
+        </div>
+
+        <div class="lat" style="display:none;">{{lat}}</div>
+        <div class="lng" style="display:none;">{{lng}}</div>
+      </li>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAliVDYKwrbduB7Kj6ItgGSFvmQlPfA23s&callback=initMap&libraries=&v=weekly"></script>
+      <script>
+        // Initialize and add the map
+        function initMap() {
+          const lat = parseFloat(document.getElementsByClassName('lat')[document.getElementsByClassName('lat').length - 1].innerHTML);
+          const lng = parseFloat(document.getElementsByClassName('lng')[document.getElementsByClassName('lng').length - 1].innerHTML);
+
+          const mapArray = document.getElementsByClassName('map');
+            const map = new google.maps.Map( mapArray[mapArray.length-1], {
+              zoom: 4,
+              center: {lat, lng},
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+              position: {lat ,lng},
+              map: map,
+            });
+        }
+      </script>
+    </script>
+
+    <script id="room-title-template" type="text/template">
+      <h3>Room #{{room}}</h3>
+    </script>
+  </body>
+</html>
