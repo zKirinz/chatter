@@ -1,5 +1,6 @@
 # Chatter ![Chatter logo](./public/images/favicon-32x32.png)
 A simple chat app using [socket.io](https://socket.io/) and few libraries. 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Available Scripts
 
