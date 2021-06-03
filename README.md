@@ -1,7 +1,15 @@
-# Chatter ![Chatter logo](./public/images/favicon-32x32.png)
-A simple chat app using [socket.io](https://socket.io/) and few libraries. 
+# ![Chatter logo](./public/images/favicon-32x32.png) Chatter
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+A simple chat app that don't store messages, you can feel free to talk something secret here. 
+
+## Technology
+- Frontend
+  - Pure HTML, CSS and JS only.
+- Backend
+  - Express - Server Core
+  - Socket.io - Realtime Communication
+  - Moment - Time Management
 ## Available Scripts
 
 In the project directory, you can run:
@@ -18,6 +26,6 @@ But automatically restart the server when you make changes.
 
 # License & copyright
 
-© Trần Trung Kiên, FPT University TP.HCM
+© Kirin Tran, FPT University TP.HCM
 Licensed under the [MIT LICENSE](LICENSE).
 
